@@ -1,7 +1,8 @@
 FROM mcr.microsoft.com/devcontainers/ruby:1-3.2-bullseye
 
 # Install Rails
-RUN su vscode -c "gem install rails webdrivers"
+RUN su vscode -c "gem install rails -v \"~> 7.0.8\""
+RUN su vscode -c "gem install webdrivers"
 RUN su vscode -c "/usr/local/rvm/bin/rvm fix-permissions"
 
 # Default value to allow debug server to serve content over GitHub Codespace's port forwarding service
@@ -10,7 +11,7 @@ ENV RAILS_DEVELOPMENT_HOSTS=".githubpreview.dev,.preview.app.github.dev,.app.git
 
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends npm
+    && apt-get -y install --no-install-recommends npm yarn
 
 # [Optional] Uncomment this line to install additional gems.
 # RUN su vscode -c "gem install <your-gem-names-here>"
